@@ -1,14 +1,14 @@
 <script setup>
-  import { ref, watch } from "vue"
-  import q from "./data/data.json"
-  import Card from "./components/Card.vue"
+import { ref, watch } from "vue"
+import q from "./data/data.json"
+import Card from "./components/Card.vue"
 
-  const quizes = ref(q)
-  const search = ref("")
+const quizes = ref(q)
+const search = ref("")
 
-  watch(search , () => {
-      quizes.value=q.filter(quiz => quiz.name.toLowerCase().includes(search.value.toLowerCase()))
-  })
+watch(search, () => {
+  quizes.value = q.filter(quiz => quiz.name.toLowerCase().includes(search.value.toLowerCase()))
+})
 </script>
 
 <template>
@@ -22,10 +22,9 @@
 
     <main>
       <div class="card-container">
-        <Card v-for="quiz in quizes" :key="quiz.id" :quiz="quiz"/>
+        <Card v-for="quiz in quizes" :key="quiz.id" :quiz="quiz" />
       </div>
     </main>
-
   </div>
 </template>
 
