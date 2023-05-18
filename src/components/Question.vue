@@ -1,5 +1,4 @@
 <script setup>
-import {defineEmits} from 'vue'
 
 const { question } = defineProps(['question'])
 const emit=defineEmits(['selectOption'])
@@ -27,22 +26,26 @@ const emitSelectOption=(isCorrect)=>{
 </template>
 
 <style scoped>
+.question{
+    margin: 0px auto;
+    width: 50%;
+}
 .option-container {
-    width: 60%;
-    height: 40px;
-    display: flex;
+    margin: 0px auto;
+    width:50%;
     flex-direction: column;
     cursor: pointer;
 }
 
 .option {
+    
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: row;
     background-color: rgb(172, 216, 255);
     border-radius: 15px;
-    margin: 10px 0px 10px 10px;
+    margin: 10px 0px;
 }
 
 .option-number {

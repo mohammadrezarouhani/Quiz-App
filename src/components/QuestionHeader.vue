@@ -1,13 +1,13 @@
 <script setup>
-const {questionStatus,barPercentage}=defineProps(['questionStatus','barPercentage'])
+const { questionStatus, barPercentage } = defineProps(['questionStatus', 'barPercentage'])
 </script>
 
 <template>
     <div>
         <header>
-            <h1>{{ questionStatus }}</h1>  
+            <h1>{{ questionStatus }}</h1>
             <div class="bar-container">
-                <div class="bar" :style="{width:barPercentage}"></div>
+                <div class="bar" :style="{ width: barPercentage }"></div>
             </div>
         </header>
     </div>
@@ -15,6 +15,13 @@ const {questionStatus,barPercentage}=defineProps(['questionStatus','barPercentag
 
 
 <style scoped>
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
 
 header h1 {
     font-weight: bold;
@@ -32,6 +39,4 @@ header h1 {
     width: 0%;
     background-color: green;
 }
-
-
 </style>
