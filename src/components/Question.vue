@@ -1,5 +1,4 @@
 <script setup>
-
 const { question } = defineProps(['question'])
 const emit=defineEmits(['selectOption'])
 

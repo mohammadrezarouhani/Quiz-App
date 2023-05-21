@@ -2,6 +2,7 @@
 import { ref, watch } from "vue"
 import q from "../data/data.json"
 import Card from "../components/Card.vue"
+import gsap from "gsap"
 
 const quizes = ref(q)
 const search = ref("")
@@ -9,6 +10,20 @@ const search = ref("")
 watch(search, () => {
   quizes.value = q.filter(quiz => quiz.name.toLowerCase().includes(search.value.toLowerCase()))
 })
+
+const beforeEnter=(el)=>{
+  el.style.opacity=0
+  el.style.transform="translateY(-100px)"
+}
+
+const enter=(el)=>{
+  gsap.to(el,{
+    y:0,
+    opacity:1,
+    duration:0.3,
+    delay:el.dataset.index * 0.3
+  })
+}
 
 </script>
 
@@ -23,7 +38,15 @@ watch(search, () => {
 
     <main>
       <div class="card-container">
-        <Card v-for="quiz in quizes" :key="quiz.id" :quiz="quiz" />
+        <TransitionGroup
+                name="card" 
+                appear 
+                @before-enter="beforeEnter" 
+                @enter="enter" 
+                @after-enter="afterEnter"
+          >
+          <Card v-for="(quiz,index) in quizes" :key="quiz.id" :quiz="quiz" :data-index="index" />
+        </TransitionGroup>
       </div>
     </main>
   </div>
@@ -61,5 +84,18 @@ header input {
   margin-left: 20px;
 }
 
-/* CARD */
+/* CARD Animation*/
+/* .card-enter-from {
+  transform: translateY(-50px);
+  opacity: 0;
+}
+
+.card-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.card-enter-active {
+  transition: all 1s ease;
+} */
 </style>
